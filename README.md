@@ -114,3 +114,65 @@ class MainActivity : AppCompatActivity() {
 
 </LinearLayout>
 
+# EXERCICIO 3
+
+Usamos Random().nextInt(11) para sortear um número entre 0 e 10. Para testar se o número é par, usamos a expressão numero % 2 == 0 (se o resto da divisão por 2 for zero, ele é par). Dependendo do resultado, uma mensagem personalizada é enviada ao Logcat. 
+
+# KOTLIN
+
+
+import android.os.Bundle
+import android.view.View
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import java.util.Random
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main_ex3)
+    }
+
+    fun sortear(view: View) {
+        val numero = Random().nextInt(11) // Sorteia de 0 a 10
+
+        val txtResultado = findViewById<TextView>(R.id.txtResultado)
+        txtResultado.text = "Número sorteado: $numero"
+
+        // Lógica condicional usando o operador módulo %
+        if (numero % 2 == 0) {
+            println("número par sorteado: $numero")
+        } else {
+            println("número ímpar sorteado: $numero")
+        }
+    }
+}
+
+
+# XML
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/txtResultado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clique para sortear"
+        android:textSize="18sp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="sortear"
+        android:text="Sortear" />
+
+</LinearLayout>
+
+
+
