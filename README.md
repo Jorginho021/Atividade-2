@@ -175,4 +175,66 @@ class MainActivity : AppCompatActivity() {
 </LinearLayout>
 
 
+# EXERCICIO 4
+
+O método Random().nextInt(6) devolve números de 0 a 5. Somando + 1, ajustamos o intervalo para 1 a 6 (como um dado real). Mantemos a contagem de rolagens usando uma variável de escopo de classe (quantidadeRolagens), combinando histórico e resultado atual em uma única String. 
+
+# KOTLIN
+
+
+import android.os.Bundle
+import android.view.View
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import java.util.Random
+
+class MainActivity : AppCompatActivity() {
+
+    private var quantidadeRolagens = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main_ex4)
+    }
+
+    fun rolarDado(view: View) {
+        quantidadeRolagens++
+        val resultado = Random().nextInt(6) + 1 // Sorteia de 1 a 6
+
+        val mensagem = "Rolagem $quantidadeRolagens: resultado $resultado"
+
+        // Logcat
+        println("Dado -> $mensagem")
+
+        // Interface
+        val txtDado = findViewById<TextView>(R.id.txtDado)
+        txtDado.text = mensagem
+    }
+}
+
+
+# XML
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/txtDado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dado não rolado"
+        android:textSize="18sp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="rolarDado"
+        android:text="Rolar Dado" />
+
+</LinearLayout>
 
