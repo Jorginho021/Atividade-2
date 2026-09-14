@@ -330,5 +330,73 @@ _parent"
 
 
 
+# Exercício 6
+
+Expandindo a lógica do Exercício 3, utilizamos txtResultado.setTextColor(Color.parseColor("#HEX")) para alterar a cor do texto do TextView dinamicamente conforme o número sorteado for par ou ímpar:
+
+Par: Aplicamos a cor #1F7A6C (Verde/Azul).
+
+Ímpar: Aplicamos a cor #D32F2F (Vermelho).
+Registramos no Logcat qual cor foi configurada em cada execução.
+
+# KOTLIN
+package com.exemplo.aula2
+
+import android.graphics.Color
+import android.os.Bundle
+import android.view.View
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import java.util.Random
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main_ex6)
+    }
+
+    fun sortearComCor(view: View) {
+        val numero = Random().nextInt(100)
+        val txtResultado = findViewById<TextView>(R.id.txtResultado)
+
+        txtResultado.text = "Sorteado: $numero"
+
+        if (numero % 2 == 0) {
+            val corVerde = "#1F7A6C"
+            txtResultado.setTextColor(Color.parseColor(corVerde))
+            println("Número PAR ($numero) sorteado. Cor aplicada: Verde ($corVerde)")
+        } else {
+            val corVermelha = "#D32F2F"
+            txtResultado.setTextColor(Color.parseColor(corVermelha))
+            println("Número ÍMPAR ($numero) sorteado. Cor aplicada: Vermelho ($corVermelha)")
+        }
+    }
+}
+
+# XML
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/txtResultado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clique para sortear"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:onClick="sortearComCor"
+        android:text="Sortear e Alterar Cor" />
+
+</LinearLayout>
 
 
