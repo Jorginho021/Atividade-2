@@ -238,3 +238,97 @@ class MainActivity : AppCompatActivity() {
 
 </LinearLayout>
 
+
+# EXERCICIO 5
+três botões apontando para três funções distintas:
+apenasAviso: Apenas executa log no Logcat.
+apenasSortear: Apenas sorteia e atualiza a interface.
+avisarESortear: Chama internamente as duas funções anteriores (apenasAviso(view) e apenasSortear(view)), executando ambos os comportamentos ao mesmo tempo sem duplicar código.
+
+# KOTLIN
+
+
+import android.os.Bundle
+import android.view.View
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import java.util.Random
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main_ex5)
+    }
+
+    // Botão 1: Só aviso no Logcat
+    fun apenasAviso(view: View) {
+        println("Aviso: Botão de aviso foi clicado!")
+    }
+
+    // Botão 2: Só atualiza a tela
+    fun apenasSortear(view: View) {
+        val numero = Random().nextInt(100)
+        val txtEx5 = findViewById<TextView>(R.id.txtEx5)
+        txtEx5.text = "Número: $numero"
+    }
+
+    // Botão 3: Executa as duas funções anteriores
+    fun avisarESortear(view: View) {
+        apenasAviso(view)
+        apenasSortear(view)
+    }
+}
+
+
+# XML
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match# EXERCICIO 5
+
+_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/txtEx5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resultado aqui..."
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="apenasAviso"
+            android:text="Aviso" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:onClick="apenasSortear"
+            android:text="Sortear" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:onClick="avisarESortear"
+            android:text="Ambos" />
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+
+
